@@ -93,7 +93,6 @@ const questionCtrl = {
             let q = await Question.find({ '_id': req.params.id })
                 ?.populate('writer')
             if (q.length) {
-                q[0].writer.password = null
                 res.json({ question: q })
             }
             else {
