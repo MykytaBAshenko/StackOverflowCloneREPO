@@ -2,6 +2,8 @@
 full stack MERN app
 
 #env
+
+
 MONGODB_URL=mongodb_link
 
 ACTIVATION_TOKEN_SECRET = secret1
