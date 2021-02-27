@@ -38,7 +38,7 @@ const commentCtrl = {
         try {
             let comment = await Comment.find({ "_id": mongoose.Types.ObjectId(req.params.id) })
             let user = await Users.find({ "_id": req.user.id })
-            if (user[0].role || user[0]._id === comment[0].writer) {
+            if (user[0].role || user[0]._id.toString() == comment[0].writer._id.toString()) {
                 comment[0].remove()
                 return res.json({ reload: true })
             }

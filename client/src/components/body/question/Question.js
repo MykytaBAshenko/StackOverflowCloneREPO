@@ -133,7 +133,7 @@ function Question(props) {
       props.history.push("/")
   }
   const isAnsweared = async () => {
-    if (question?.writer?._id == auth?.user?._id) {
+    if (question?.writer?._id == auth?.user?._id || auth?.isAdmin) {
       const res = await axios.patch(`/api/question/setansweared/${question?._id}`, {}, {
         headers: { Authorization: token }
       })
@@ -196,9 +196,10 @@ function Question(props) {
             </div>
 
 
-            <div className="questionComponentBodyExactDescription">
+            <pre className="questionComponentBodyExactDescription">
               {question?.description}
-            </div>{question?.images?.length ?
+            </pre>
+            {question?.images?.length ?
               <div className="questionComponentBodyExactImages">
                 {question?.images?.map((t, i) => <img key={i} src={t}></img>)}
 
@@ -245,8 +246,9 @@ function Question(props) {
             </div>
           </div> : null
         }
+        {auth.isLogged ?
         <div className="inputForm">
-          <div className="inputFormTitle">Create answear</div>
+          <div className="inputFormTitle">Create answer</div>
           <textarea className="DescriptionInput" placeholder="Body" value={answeartext} onChange={e => setansweartext(e.target.value)}></textarea>
           <div className="imagesMap">
             {photos.map((src, index) => <img key={index} src={src} onClick={() => dropPhoto(index)} />)}
@@ -259,14 +261,14 @@ function Question(props) {
               <input placeholder="Link on photo" onChange={e => setphotosinput(e.target.value)} value={photosinput} />
               <button onClick={() => setphoto()}>Set photo</button></div> : null}
           </div>
-          <button className="create" onClick={() => createAnswear()}>Create Answear</button>
-        </div>
+          <button className="create" onClick={() => createAnswear()}>Create Answer</button>
+        </div>:null}
 
 
 
         {answears?.length &&
           <div className="answearsMap">
-            <div className="answearsMapTitle">Answears</div>
+            <div className="answearsMapTitle">Answers</div>
             {answears?.map((a, i) =>
               <div className="answear" key={i}>
                 <div className="answearBody">

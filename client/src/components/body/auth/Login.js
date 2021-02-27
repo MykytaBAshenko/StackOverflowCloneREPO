@@ -29,7 +29,6 @@ function Login() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        try {
             const res = await axios.post('/api/auth/login', { email, password })
             alert(res?.data?.msg)
             if(res?.data?.success) {
@@ -37,28 +36,20 @@ function Login() {
                 dispatch(dispatchLogin())
                 history.push("/")
             }
-        } catch (err) {
-            err.response.data.msg &&
-                setUser({ ...user, err: err.response.data.msg, success: '' })
-        }
+        
     }
 
     const responseGoogle = async (response) => {
-        try {
             const res = await axios.post('/api/auth/google_login', { tokenId: response.tokenId })
             setUser({ ...user, error: '', success: res.data.msg })
             localStorage.setItem('firstLogin', true)
 
             dispatch(dispatchLogin())
             history.push('/')
-        } catch (err) {
-            err.response.data.msg &&
-                setUser({ ...user, err: err.response.data.msg, success: '' })
-        }
+       
     }
 
     const responseFacebook = async (response) => {
-        try {
             const { accessToken, userID } = response
             const res = await axios.post('/api/auth/facebook_login', { accessToken, userID })
 
@@ -67,10 +58,6 @@ function Login() {
 
             dispatch(dispatchLogin())
             history.push('/')
-        } catch (err) {
-            err.response.data.msg &&
-                setUser({ ...user, err: err.response.data.msg, success: '' })
-        }
     }
 
     return (
@@ -112,7 +99,7 @@ function Login() {
 
             </div>
 
-            <p>New Customer? <Link to="/register">Register</Link></p>
+            <p>New User? <Link to="/register">Register</Link></p>
         </div>
     )
 }

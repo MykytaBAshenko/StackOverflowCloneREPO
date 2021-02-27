@@ -87,6 +87,12 @@
     flex-direction: column;
 }
 
+.questionsMap textarea{
+    height: 100px;
+    border: 0;
+    
+}
+
 .questionTitle {
     align-items: center;
     display: flex;
@@ -104,4 +110,8 @@
     background-color: #333;
     color: white;
     padding: 5px 10px;
+}
+.questionDescription{
+white-space: pre-line;
+
 }

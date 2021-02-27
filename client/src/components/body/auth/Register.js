@@ -46,7 +46,6 @@ function Register(props) {
             })
             alert("Submit email!")
             props.history.push("/login")
-            // setUser({ ...user, err: '', success: res.data.msg })
             
         } catch (err) {
             err.response.data.msg &&
@@ -57,9 +56,6 @@ function Register(props) {
     return (
         <div className="login_page">
             <h2>Register</h2>
-            {err && showErrMsg(err)}
-            {success && showSuccessMsg(success)}
-
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Name</label>
@@ -69,7 +65,7 @@ function Register(props) {
 
                 <div>
                     <label htmlFor="email">Email Address</label>
-                    <input type="text" placeholder="Enter email address" id="email"
+                    <input type="email" placeholder="Enter email address" id="email"
                         value={email} name="email" onChange={handleChangeInput} />
                 </div>
 

@@ -96,7 +96,6 @@ const questionCtrl = {
                 res.json({ question: q })
             }
             else {
-                console.log(11)
                 res.json({ redirect: true })
             }
         } catch (err) {
@@ -191,7 +190,6 @@ const questionCtrl = {
         try {
             let user = await Users.find({ "_id": req.user.id })
             let question = await Question.find({ "_id": req.params.id }).populate("writer")
-            console.log(req)
             if (!question.length)
                 return res.json({ error: true })
             if (user[0].role || user[0]._id === question[0].writer) {

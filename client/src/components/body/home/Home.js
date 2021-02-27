@@ -30,12 +30,12 @@ function Home() {
             <div className="home_page_header">
                 <input placeholder="Search by content" value={search} onChange={e => setsearch(e.target.value)} />
                 <input placeholder="Search by tags" value={tag} onChange={e => settag(e.target.value)} />
-                <button onClick={() => setisansweared(!isansweared)}>{isansweared ? "Answered" : "Not Answered"}</button>
+                <button onClick={() => setisansweared(!isansweared)}>{isansweared ? "Answered" : "All"}</button>
             </div>
             <div className="questionsMap">
                 {questions.map((q, i) => <div key={i} className={"question " + (q.answered ? "answeared" : "")} key={"question_" + i}>
                     <div className="questionTitle"><div className="isansweared"></div><Link to={"question/" + q._id}>{q.title}</Link></div>
-                    <div className="questionDescription">{q.description}</div>
+                    <pre className="questionDescription">{q.description}</pre>
                     <div className="tagsMap">
                         {q.tags.map((t, index) => <div key={"tag_" + i + "_" + index}>{t}</div>)}
                     </div>

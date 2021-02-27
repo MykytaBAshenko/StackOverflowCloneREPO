@@ -260,4 +260,17 @@
     font-size: 30px;
     margin: 5px 20px;
 }
-
+pre.questionComponentBodyExactDescription{
+max-width: 100%;
+overflow: hidden;
+white-space: pre-line;
+}
+.questionComponentBodyExact{
+    max-width: 100%;
+}
+.questionComponentBody{
+    max-width: 100%;
+}
+.questionComponent{
+    max-width: 100%;
+}

@@ -86,12 +86,13 @@ function Settings(props) {
   const [avatarinput, setavatarinput] = useState("")
   const [taginput, settaginput] = useState("")
   const changePas = () => {
-    console.log(password === submitpassword, password.length > 6)
-    if (password === submitpassword && password.length > 6) {
+    if (password == submitpassword && password.length > 6) {
       axios.post('/api/users/settings/password', { password: password }, {
         headers: { Authorization: token }
       }).then(d => { alert("Done") })
     }
+    else 
+    alert("Bad password")
   }
   return (<div className="settings">
     <div className="avatar">
@@ -111,16 +112,18 @@ function Settings(props) {
     <div className="settingsTagsMap">
       {tags?.map((tag, i) => <div key={i}>{tag} <button onClick={() => rmrftag(i)}>X</button></div>)}
     </div>
-    <div className="settingsTagsInputs">
-      <input value={taginput} placeholder="Set tag" onChange={e => { settaginput(e.target.value) }} />
-      <button onClick={() => addTag()}>add</button>
-    </div>
+    {tags?.length < 6 ? 
+      <div className="settingsTagsInputs">
+        <input value={taginput} placeholder="Set tag" onChange={e => { settaginput(e.target.value) }} />
+        <button onClick={() => addTag()}>add</button>
+      </div> : null
+    }
     <button className="submitChanges" onClick={() => updateMetaInfo()}>Submit</button>
 
     <div className="changePassword">
       <label>Change Password</label>
-      <input value={password} onChange={e => setpassword(e.target.value)} />
-      <input value={submitpassword} onChange={e => setsubmitpassword(e.target.value)} />
+      <input type="password" value={password} onChange={e => setpassword(e.target.value)} />
+      <input type="password" value={submitpassword} onChange={e => setsubmitpassword(e.target.value)} />
       <button className="" onClick={() => changePas()}>Change Password</button>
     </div>
 
